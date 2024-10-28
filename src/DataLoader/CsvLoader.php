@@ -7,18 +7,15 @@ class CsvLoader
     public function loadData($filePath)
     {
         $data = [];
+        $headers = [];
         if (($handle = fopen($filePath, "r")) !== false) {
-            while (($row = fgetcsv($handle, 1000, ",")) !== false) {
-                $data[] = [
-                    'Customer' => $row[0] ?? null,
-                    'Country' => $row[1] ?? null,
-                    'Order' => $row[2] ?? null,
-                    'Status' => $row[3] ?? null,
-                    'Group' => $row[4] ?? null
-                ];
+            $headers = fgetcsv($handle, 1000, "|") ?: ['Customer', 'Country', 'Order', 'Status', 'Group'];
+
+            while (($row = fgetcsv($handle, 1000, "|")) !== false) {
+                $data[] = array_combine($headers, $row);
             }
             fclose($handle);
         }
-        return $data;
+        return ['headers' => $headers, 'data' => $data];
     }
 }
