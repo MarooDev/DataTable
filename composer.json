@@ -1,0 +1,17 @@
+{
+    "name": "dev/dataloader",
+    "description": "\u0016\u0016A PHP tool for loading and analyzing data from CSV, JSON, and LDIF files",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Dev\\Dataloader\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marek Galant"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
