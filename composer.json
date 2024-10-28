@@ -1,10 +1,10 @@
 {
     "name": "dev/dataloader",
-    "description": "\u0016\u0016A PHP tool for loading and analyzing data from CSV, JSON, and LDIF files",
+    "description": "A PHP tool for loading and analyzing data from CSV, JSON, and LDIF files",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Dev\\Dataloader\\": "src/"
+            "src\\": "src/"
         }
     },
     "authors": [
