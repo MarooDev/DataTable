@@ -1,0 +1,14 @@
+/vendor
+node_modules/
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+.idea/
+cache/
+sessions/
+.env
+*.cache
+build/
+dist/
