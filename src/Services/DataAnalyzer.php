@@ -8,7 +8,7 @@ class DataAnalyzer
     {
         $orderCounts = [];
         foreach ($data as $row) {
-            $order = $row['Order'] ?? 'Unknown';
+            $order = isset($row['Order']) && is_string($row['Order']) ? $row['Order'] : 'Unknown';
             $orderCounts[$order] = ($orderCounts[$order] ?? 0) + 1;
         }
         arsort($orderCounts);
@@ -19,8 +19,8 @@ class DataAnalyzer
     {
         $groupCountryCounts = [];
         foreach ($data as $row) {
-            $group = $row['Group'] ?? 'Unknown';
-            $country = $row['Country'] ?? 'Unknown';
+            $group = (isset($row['Group']) && is_string($row['Group'])) ? $row['Group'] : 'Unknown';
+            $country = (isset($row['Country']) && is_string($row['Country'])) ? $row['Country'] : 'Unknown';
             $groupCountryCounts[$group][$country] = ($groupCountryCounts[$group][$country] ?? 0) + 1;
         }
 
@@ -37,8 +37,9 @@ class DataAnalyzer
     {
         $statusCounts = [];
         foreach ($dataByFile as $file => $data) {
+            $file = is_string($file) ? $file : 'Unknown';
             foreach ($data as $row) {
-                $status = $row['Status'] ?? 'Unknown';
+                $status = isset($row['Status']) && is_string($row['Status']) ? $row['Status'] : 'Unknown';
                 $statusCounts[$status][$file] = ($statusCounts[$status][$file] ?? 0) + 1;
             }
         }
@@ -57,7 +58,7 @@ class DataAnalyzer
     {
         $totalConsonants = 0;
         foreach ($data as $row) {
-            $name = str_replace(' ', '', $row['Customer'] ?? '');
+            $name = isset($row['Customer']) && is_string($row['Customer']) ? str_replace(' ', '', $row['Customer']) : '';
             $totalConsonants += preg_match_all('/[bcdfghjklmnpqrstvwxyz]/i', $name);
         }
         return $totalConsonants;
